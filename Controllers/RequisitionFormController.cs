@@ -1,6 +1,7 @@
 ﻿using EmployeeRequisitionPortal.Model;
 using EmployeeRequisitionPortal.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace EmployeeRequisitionPortal.Controllers
 {
@@ -33,12 +34,48 @@ namespace EmployeeRequisitionPortal.Controllers
                 NumberOfEmployees = addedData.NumberOfEmployees,
                 IsContract = addedData.IsContract,
                 StatusId = 1,
-                UserId = "BFB514E9-A8C3-4F99-B76D-99BC6FEEA118"
+                UserId = "8097E610-3EE2-47A1-9F3C-D61D1962C588"
             };
             _dbRequiitionForm.Add(requisition);
             //Add requisitionWorkFlow here find using userId in requisitionForm
             //var formId = _dbRequiitionForm;
 
+            return Ok();
+        }
+        [HttpGet]
+        public IActionResult GetAllRequisitionForm()
+        {
+            var data = _dbRequiitionForm.FindAll();
+            return Ok(data);
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetRequisitionFormById(long id)
+        {
+            var data = _dbRequiitionForm.FindById(id);
+            if(data == null)
+            {
+                return NotFound();
+            }
+            return Ok(data);
+        }
+        [HttpPut]
+        public IActionResult UpdateRequisitionForm(UpdateRequisitionFormDto updatedData)
+        {
+             var FormData = _dbRequiitionForm.FindById(updatedData.RequisitionFormId);
+            if(FormData == null)
+            {
+                return NotFound();
+            }
+            FormData.JobTitle = updatedData.JobTitle;
+            FormData.Description = updatedData.Description; 
+            FormData.Department = updatedData.Department;
+            FormData.NumberOfEmployees = updatedData.NumberOfEmployees;
+            FormData.IsContract = updatedData.IsContract;
+            FormData.PrimarySkills = updatedData.PrimarySkills;
+            FormData.SecondarySkills = updatedData.SecondarySkills;
+            FormData.ExperienceNeeded = updatedData.ExperienceNeeded;
+            FormData.StatusId = 1002;
+            _dbRequiitionForm.UpdateData(FormData);
             return Ok();
         }
     }

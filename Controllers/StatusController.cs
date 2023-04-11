@@ -21,5 +21,21 @@ namespace EmployeeRequisitionPortal.Controllers
             _dbStatus.Add(status);
             return Ok();    
         }
+        [HttpGet("{id}")]
+        public IActionResult GetStatusById(int id)
+        {
+            var status = _dbStatus.FindById(id);
+            if (status == null)
+            {
+                return NotFound();
+            }
+            return Ok(status);
+        }
+
+        [HttpGet]
+        public IActionResult GetAllStatus()
+        {
+            return Ok(_dbStatus.FindAll());
+        }
     }
 }

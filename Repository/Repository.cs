@@ -21,21 +21,14 @@ namespace EmployeeRequisitionPortal.Repository
 
         public void Delete(int id)
         {
-            _dbSet.Remove(Find(id));
+            _dbSet.Remove(FindById(id));
             _context.SaveChanges();
         }
 
-        public T Find(int id)
-        {
-            var data = _dbSet.FirstOrDefault(x => x.Equals(id));
-            if(data == null)
-            {
-                throw new Exception(message: "Id does not exits");
-            }
-            else
-            {
-                return data;
-            }
+        public T FindById(long id)
+        { 
+            var data = _dbSet.Find(id);
+            return data;
         }
 
         public List<T> FindAll()
@@ -43,7 +36,7 @@ namespace EmployeeRequisitionPortal.Repository
             return _dbSet.ToList();
         }
 
-        public void Update(T entity)
+        public void UpdateData(T entity)
         {
             _dbSet.Update(entity);
             _context.SaveChanges();

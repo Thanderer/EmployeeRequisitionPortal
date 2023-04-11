@@ -2,10 +2,10 @@
 {
     public interface IRepository<T> where T : class
     {
-        T Find(int id);
+        T FindById(long id);
         List<T> FindAll();
         void Add(T entity);
-        void Update(T entity);
+        void UpdateData(T entity);
         void Delete(int id);
     }
 }
