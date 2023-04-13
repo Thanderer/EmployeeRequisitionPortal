@@ -7,5 +7,6 @@
         void Add(T entity);
         void UpdateData(T entity);
         void Delete(int id);
+        T FindByName(string name);
     }
 }

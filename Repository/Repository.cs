@@ -41,5 +41,10 @@ namespace EmployeeRequisitionPortal.Repository
             _dbSet.Update(entity);
             _context.SaveChanges();
         }
+
+        public T FindByName(string name)
+        {
+            return _dbSet.Find(name);//??can we use this to find id fro given name
+        }
     }
 }

@@ -52,22 +52,22 @@ namespace EmployeeRequisitionPortal.Controllers
         public IActionResult GetRequisitionFormById(long id)
         {
             var data = _dbRequiitionForm.FindById(id);
-            if(data == null)
+            if (data == null)
             {
                 return NotFound();
             }
-            return Ok(data);
+            return Ok(data);// pass dto insted data
         }
         [HttpPut]
         public IActionResult UpdateRequisitionForm(UpdateRequisitionFormDto updatedData)
         {
-             var FormData = _dbRequiitionForm.FindById(updatedData.RequisitionFormId);
-            if(FormData == null)
+            var FormData = _dbRequiitionForm.FindById(updatedData.RequisitionFormId);
+            if (FormData == null)
             {
                 return NotFound();
             }
             FormData.JobTitle = updatedData.JobTitle;
-            FormData.Description = updatedData.Description; 
+            FormData.Description = updatedData.Description;
             FormData.Department = updatedData.Department;
             FormData.NumberOfEmployees = updatedData.NumberOfEmployees;
             FormData.IsContract = updatedData.IsContract;
@@ -75,6 +75,35 @@ namespace EmployeeRequisitionPortal.Controllers
             FormData.SecondarySkills = updatedData.SecondarySkills;
             FormData.ExperienceNeeded = updatedData.ExperienceNeeded;
             FormData.StatusId = 1002;
+            _dbRequiitionForm.UpdateData(FormData);
+            return Ok();
+        }
+        [HttpPut("updateStatus")]
+        public IActionResult UpdateRQFormStatus(UpdateStatusRQFormDto updateStatusRQFormDto)
+        {
+            //form UI name of status should be returned so from status name find id and then update requisitionform
+            var FormData = _dbRequiitionForm.FindById(updateStatusRQFormDto.Id);
+            if(FormData == null)
+            {
+                return NotFound();
+            }
+
+            FormData.StatusId = updateStatusRQFormDto.StatusId;
+            _dbRequiitionForm.UpdateData(FormData);
+            return Ok();
+        }
+
+        [HttpPut("addBudget")]
+        public IActionResult AddRQFormBudget(AddBudgetRQFormDto addedBudget)
+        {
+            var FormData = _dbRequiitionForm.FindById(addedBudget.Id);
+            if (FormData == null)
+            {
+                return NotFound();
+            }
+
+            FormData.BudgetLowerRange = addedBudget.BudgetLowerRange;
+            FormData.BudgetUpperRange = addedBudget.BudgetUpperRange;
             _dbRequiitionForm.UpdateData(FormData);
             return Ok();
         }
