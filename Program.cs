@@ -13,14 +13,15 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddIdentity<Employee, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: _MyPolicy, builder =>
-    {
-        builder.WithOrigins("https://localhost:4200")
-        .AllowAnyHeader().AllowAnyMethod();
-    });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: _MyPolicy, builder =>
+//    {
+//        builder.WithOrigins("https://localhost:4200")
+//        .AllowAnyHeader().AllowAnyMethod();
+//    });
+//});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -34,7 +35,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(_MyPolicy);
+//app.UseCors(_MyPolicy);
+
+app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
