@@ -16,7 +16,7 @@ namespace EmployeeRequisitionPortal.Controllers
         {
             _roleManager = roleManager;
         }
-
+        [HttpPost]
         public async Task AddRole()
         {
             //_roleManager.CreateAsync();

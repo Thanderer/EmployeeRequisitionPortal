@@ -37,12 +37,22 @@ namespace EmployeeRequisitionPortal.Controllers
                 UserId = "8097E610-3EE2-47A1-9F3C-D61D1962C588"
             };
             _dbRequiitionForm.Add(requisition);
+            var formId = requisition.RequisitionFormId;
+            RequisitionFormWorkflow requisitionFormWorkflow = new RequisitionFormWorkflow
+            {
+                RequisitionFormId= formId,
+                StatusId = 1,
+                UserId = "8097E610-3EE2-47A1-9F3C-D61D1962C588",
+                AssignedDate = DateTime.Now,
+                IsCurrent = true,
+                StatusComment  = string.Empty
+            };
             //Add requisitionWorkFlow here find using userId in requisitionForm
             //var formId = _dbRequiitionForm;
-
+            _dbRequisitionFormWorkflow.Add(requisitionFormWorkflow);
             return Ok();
         }
-        [HttpGet]
+        [HttpGet("GetAllForm")]
         public IActionResult GetAllRequisitionForm()
         {
             var data = _dbRequiitionForm.FindAll();
@@ -58,7 +68,7 @@ namespace EmployeeRequisitionPortal.Controllers
             }
             return Ok(data);// pass dto insted data
         }
-        [HttpPut]
+        [HttpPut("updateRequisitionForm")]
         public IActionResult UpdateRequisitionForm(UpdateRequisitionFormDto updatedData)
         {
             var FormData = _dbRequiitionForm.FindById(updatedData.RequisitionFormId);
@@ -83,13 +93,17 @@ namespace EmployeeRequisitionPortal.Controllers
         {
             //form UI name of status should be returned so from status name find id and then update requisitionform
             var FormData = _dbRequiitionForm.FindById(updateStatusRQFormDto.Id);
-            if(FormData == null)
+            if (FormData == null)
             {
                 return NotFound();
             }
 
             FormData.StatusId = updateStatusRQFormDto.StatusId;
             _dbRequiitionForm.UpdateData(FormData);
+            RequisitionFormWorkflow requisitionFormWorkflow = new RequisitionFormWorkflow
+            {
+
+            };
             return Ok();
         }
 
