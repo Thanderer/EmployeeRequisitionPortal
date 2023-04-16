@@ -1,10 +1,12 @@
 ﻿using EmployeeRequisitionPortal.Model;
 using EmployeeRequisitionPortal.Repository;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeRequisitionPortal.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class StatusController : ControllerBase
