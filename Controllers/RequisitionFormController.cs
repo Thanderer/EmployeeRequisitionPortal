@@ -1,10 +1,12 @@
 ﻿using EmployeeRequisitionPortal.Model;
 using EmployeeRequisitionPortal.Repository;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace EmployeeRequisitionPortal.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class RequisitionFormController : ControllerBase

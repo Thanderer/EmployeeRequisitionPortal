@@ -1,5 +1,6 @@
 ﻿using EmployeeRequisitionPortal.Jwt;
 using EmployeeRequisitionPortal.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,8 @@ namespace EmployeeRequisitionPortal.Controllers
     /// <summary>
     /// Employee login management controller
     /// </summary>
+    /// 
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
