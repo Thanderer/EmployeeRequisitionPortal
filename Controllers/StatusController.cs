@@ -39,5 +39,27 @@ namespace EmployeeRequisitionPortal.Controllers
         {
             return Ok(_dbStatus.FindAll());
         }
+        [HttpPut]
+        public IActionResult UpdateStatus(Status status) 
+        {
+            Status statusData = _dbStatus.FindById(status.StatusId);
+            if(statusData == null)
+            {
+                return NotFound();
+            }
+            statusData.StatusName = status.StatusName;
+            _dbStatus.UpdateData(statusData);
+            return Ok();
+        }
+        [HttpDelete]
+        public IActionResult DeleteStatus(int statusId)
+        {
+            if(_dbStatus.FindById(statusId) == null)
+            {
+                return NotFound();
+            }
+            _dbStatus.Delete(statusId);
+            return Ok();
+        }
     }
 }

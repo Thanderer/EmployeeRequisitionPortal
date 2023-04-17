@@ -1,4 +1,5 @@
 ﻿using EmployeeRequisitionPortal.Data;
+using EmployeeRequisitionPortal.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeRequisitionPortal.Repository
@@ -46,5 +47,6 @@ namespace EmployeeRequisitionPortal.Repository
         {
             return _dbSet.Find(name);//??can we use this to find id fro given name
         }
+
     }
 }

@@ -42,12 +42,12 @@ namespace EmployeeRequisitionPortal.Controllers
             var formId = requisition.RequisitionFormId;
             RequisitionFormWorkflow requisitionFormWorkflow = new RequisitionFormWorkflow
             {
-                RequisitionFormId= formId,
+                RequisitionFormId = formId,
                 StatusId = 1,
                 UserId = "8097E610-3EE2-47A1-9F3C-D61D1962C588",
                 AssignedDate = DateTime.Now,
                 IsCurrent = true,
-                StatusComment  = string.Empty
+                StatusComment = string.Empty
             };
             //Add requisitionWorkFlow here find using userId in requisitionForm
             //var formId = _dbRequiitionForm;
@@ -58,7 +58,20 @@ namespace EmployeeRequisitionPortal.Controllers
         public IActionResult GetAllRequisitionForm()
         {
             var data = _dbRequiitionForm.FindAll();
-            return Ok(data);
+            var RequitionFormDtoData= data.Select(x => new RequiitionFormGetByIDto()
+            {
+                JobTitle = x.JobTitle,
+                Description = x.Description,
+                Department = x.Department,
+                PrimarySkills = x.PrimarySkills,
+                SecondarySkills = x.SecondarySkills,
+                ExperienceNeeded = x.ExperienceNeeded,
+                NumberOfEmployees = x.NumberOfEmployees,
+                IsContract = x.IsContract,
+                StatusId = x.StatusId
+            });
+
+            return Ok(RequitionFormDtoData);
         }
         [HttpGet("{id}")]
         public IActionResult GetRequisitionFormById(long id)
@@ -68,7 +81,20 @@ namespace EmployeeRequisitionPortal.Controllers
             {
                 return NotFound();
             }
-            return Ok(data);// pass dto insted data
+            var REFormDtoData = new RequiitionFormGetByIDto
+            {
+                RequisitionFormId = data.RequisitionFormId,
+                JobTitle = data.JobTitle,
+                Description = data.Description,
+                Department = data.Department,
+                PrimarySkills = data.PrimarySkills,
+                SecondarySkills = data.SecondarySkills,
+                ExperienceNeeded = data.ExperienceNeeded,
+                NumberOfEmployees = data.NumberOfEmployees,
+                IsContract = data.IsContract,  
+                StatusId = data.StatusId
+            };
+            return Ok(REFormDtoData);// pass dto insted data done
         }
         [HttpPut("updateRequisitionForm")]
         public IActionResult UpdateRequisitionForm(UpdateRequisitionFormDto updatedData)
