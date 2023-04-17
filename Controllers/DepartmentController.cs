@@ -18,7 +18,7 @@ namespace EmployeeRequisitionPortal.Controllers
             _dbDepartment = dbDepartment;
         }
         [HttpPost]
-        public IActionResult AddDepartment(AddDepartmentDto departmentDto)
+        public IActionResult AddDepartment(DepartmentDto departmentDto)
         {
             Department department = new Department()
             {
@@ -29,7 +29,7 @@ namespace EmployeeRequisitionPortal.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateDepartment(AddDepartmentDto departmentDto)
+        public IActionResult UpdateDepartment(DepartmentDto departmentDto)
         {
             var data = _dbDepartment.FindById(departmentDto.Id);
             if (data == null)
@@ -45,7 +45,13 @@ namespace EmployeeRequisitionPortal.Controllers
         [HttpGet]
         public IActionResult GetAllDepartment()
         {
-            return Ok(_dbDepartment.FindAll());
+            var Data = _dbDepartment.FindAll();
+            var DepartmentDtoData = Data.Select(x => new DepartmentDto
+            {
+                Id = x.DepartmentId,
+                DepartmentName= x.DepartmentName
+            }) ;
+            return Ok(DepartmentDtoData);
         }
         [HttpGet("{id}")]
         public IActionResult GetDataById(int id)
@@ -53,8 +59,12 @@ namespace EmployeeRequisitionPortal.Controllers
             var department = _dbDepartment.FindById(id);
             if (department == null)
                 return NotFound();
-            
-            return Ok(department);
+            var DepartmentDtoData = new DepartmentDto
+            {
+                Id= department.DepartmentId,
+                DepartmentName = department.DepartmentName
+            };
+            return Ok(DepartmentDtoData);
         }
         [HttpDelete]
         public IActionResult DeleteDepartment(int id)
