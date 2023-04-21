@@ -32,9 +32,9 @@ namespace EmployeeRequisitionPortal.Repository
             return data;
         }
 
-        public List<T> FindAll()
+        public IQueryable<T> FindAll()
         {
-            return _dbSet.ToList();
+            return _dbSet.AsQueryable();
         }
 
         public void UpdateData(T entity)

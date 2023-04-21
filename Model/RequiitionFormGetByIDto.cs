@@ -10,8 +10,9 @@
         public string SecondarySkills { get; set; }
         public short ExperienceNeeded { get; set; }
         public short NumberOfEmployees { get; set; }
-        public bool IsContract { get; set; }    
-        //public string statusName { get; set; }
-        public int StatusId { get; set; }
+        public bool IsContract { get; set; }
+        public string statusName { get; set; }
+        //public Status Status { get; set; }
+        public DateTime CreatedOn{ get; set; }
     }
 }
