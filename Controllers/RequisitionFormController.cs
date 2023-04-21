@@ -122,7 +122,7 @@ namespace EmployeeRequisitionPortal.Controllers
             FormData.PrimarySkills = updatedData.PrimarySkills;
             FormData.SecondarySkills = updatedData.SecondarySkills;
             FormData.ExperienceNeeded = updatedData.ExperienceNeeded;
-            FormData.StatusId = 1002;
+            FormData.StatusId = 1002;//Status change from raised to update
             _dbRequiitionForm.UpdateData(FormData);
             return Ok();
         }
@@ -156,6 +156,7 @@ namespace EmployeeRequisitionPortal.Controllers
 
             FormData.BudgetLowerRange = addedBudget.BudgetLowerRange;
             FormData.BudgetUpperRange = addedBudget.BudgetUpperRange;
+            FormData.StatusId = 5; // Status change from approved to update
             _dbRequiitionForm.UpdateData(FormData);
             return Ok();
         }
