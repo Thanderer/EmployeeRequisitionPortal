@@ -54,22 +54,31 @@ namespace EmployeeRequisitionPortal.Controllers
             _dbRequisitionFormWorkflow.Add(requisitionFormWorkflow);
             return Ok();
         }
+
         [HttpGet("GetAllForm")]
-        public IActionResult GetAllRequisitionForm()
+        public IActionResult GetAllRequisitionForm(int statusId)
         {
             var data = _dbRequiitionForm.FindAll();
-            var RequitionFormDtoData= data.Select(x => new RequiitionFormGetByIDto()
+            if (statusId > 0)
             {
-                JobTitle = x.JobTitle,
-                Description = x.Description,
-                Department = x.Department,
-                PrimarySkills = x.PrimarySkills,
-                SecondarySkills = x.SecondarySkills,
-                ExperienceNeeded = x.ExperienceNeeded,
-                NumberOfEmployees = x.NumberOfEmployees,
-                IsContract = x.IsContract,
-                StatusId = x.StatusId
-            });
+                data = data.Where(x => x.StatusId == statusId);
+            }
+
+            var RequitionFormDtoData = data.Select(x =>
+                new RequiitionFormGetByIDto()
+                {
+                    RequisitionFormId = x.RequisitionFormId,
+                    JobTitle = x.JobTitle,
+                    Description = x.Description,
+                    Department = x.Department,
+                    PrimarySkills = x.PrimarySkills,
+                    SecondarySkills = x.SecondarySkills,
+                    ExperienceNeeded = x.ExperienceNeeded,
+                    NumberOfEmployees = x.NumberOfEmployees,
+                    IsContract = x.IsContract,
+                    statusName = x.Status.StatusName,
+                    CreatedOn = x.CreatedDate,
+                }).ToList();
 
             return Ok(RequitionFormDtoData);
         }
@@ -91,8 +100,9 @@ namespace EmployeeRequisitionPortal.Controllers
                 SecondarySkills = data.SecondarySkills,
                 ExperienceNeeded = data.ExperienceNeeded,
                 NumberOfEmployees = data.NumberOfEmployees,
-                IsContract = data.IsContract,  
-                StatusId = data.StatusId
+                IsContract = data.IsContract,
+                statusName = data.Status.StatusName,
+                CreatedOn = data.CreatedDate
             };
             return Ok(REFormDtoData);// pass dto insted data done
         }
@@ -112,7 +122,7 @@ namespace EmployeeRequisitionPortal.Controllers
             FormData.PrimarySkills = updatedData.PrimarySkills;
             FormData.SecondarySkills = updatedData.SecondarySkills;
             FormData.ExperienceNeeded = updatedData.ExperienceNeeded;
-            FormData.StatusId = 1002;
+            FormData.StatusId = 1002;//Status change from raised to update
             _dbRequiitionForm.UpdateData(FormData);
             return Ok();
         }
@@ -146,6 +156,7 @@ namespace EmployeeRequisitionPortal.Controllers
 
             FormData.BudgetLowerRange = addedBudget.BudgetLowerRange;
             FormData.BudgetUpperRange = addedBudget.BudgetUpperRange;
+            FormData.StatusId = 5; // Status change from approved to update
             _dbRequiitionForm.UpdateData(FormData);
             return Ok();
         }
