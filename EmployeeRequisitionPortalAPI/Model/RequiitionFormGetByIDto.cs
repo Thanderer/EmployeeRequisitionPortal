@@ -12,7 +12,7 @@
         public short NumberOfEmployees { get; set; }
         public bool IsContract { get; set; }
         public string statusName { get; set; }
-        //public Status Status { get; set; }
+        public Status Status { get; set; }
         public DateTime CreatedOn{ get; set; }
     }
 }

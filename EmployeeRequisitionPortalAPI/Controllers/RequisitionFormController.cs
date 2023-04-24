@@ -1,4 +1,4 @@
-﻿using EmployeeRequisitionPortal.Model;
+﻿ using EmployeeRequisitionPortal.Model;
 using EmployeeRequisitionPortal.Repository;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -100,6 +100,7 @@ namespace EmployeeRequisitionPortal.Controllers
                 SecondarySkills = data.SecondarySkills,
                 ExperienceNeeded = data.ExperienceNeeded,
                 NumberOfEmployees = data.NumberOfEmployees,
+                Status = data.Status,
                 IsContract = data.IsContract,
                 statusName = data.Status.StatusName,
                 CreatedOn = data.CreatedDate

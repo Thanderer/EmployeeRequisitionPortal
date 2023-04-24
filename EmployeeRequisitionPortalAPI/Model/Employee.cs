@@ -7,11 +7,9 @@ namespace EmployeeRequisitionPortal.Model
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
-        public bool IsHead { get; set; }
-        public int DepartmentId { get; set; }
-        [ForeignKey(nameof(DepartmentId))]
-        public Department Department { get; set; }
+        public bool? IsHead { get; set; }
+        public int? DepartmentId { get; set; }
+        public virtual Department Department { get; set; }
         public ICollection<RequisitionForm> RequisitionForms { get; set; }
         //public ICollection<RequisitionForm> RequisitionFormUB { get; set; }
         public ICollection<RequisitionFormWorkflow> AssignedTo { get; set; }

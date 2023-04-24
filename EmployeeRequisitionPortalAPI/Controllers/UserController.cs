@@ -38,12 +38,12 @@ namespace EmployeeRequisitionPortal.Controllers
                 user = await _userManager.FindByEmailAsync(payload.Email);
                 if (user == null)
                 {
-                    user = new Employee { Email = payload.Email, UserName = payload.Email };
+                    user = new Employee { Email = payload.Email, UserName = payload.Email, FirstName = payload.GivenName, LastName = payload.FamilyName, IsHead = false };
                     await _userManager.CreateAsync(user);
 
                     //prepare and send an email for the email confirmation
 
-                    await _userManager.AddToRoleAsync(user, "Viewer");
+                    //await _userManager.AddToRoleAsync(user, "Viewer");
                     await _userManager.AddLoginAsync(user, info);
                 }
                 else
