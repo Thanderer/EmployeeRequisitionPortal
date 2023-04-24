@@ -1,0 +1,63 @@
+<div class="container justify-content-center d-flex mt-5 mb-5">
+
+  <form  class="col-4" style="border: 1px solid; border-radius: 15px ; padding: 30px;font-size: 20px;">
+    <h1 class="text-center">Form Id : {{detail.requisitionFormId}}</h1>
+
+
+    <div class="mb-3 ">
+      <label for="exampleFormControlInput1" class="form-label">Job Title</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" required value="{{detail.jobTitle }}"
+        disabled>
+    </div>
+
+    <!-- <div class="mb-3 ">
+      <label for="exampleFormControlInput1" class="form-label"></label>
+      <input type="text" class="form-control" id="exampleFormControlInput1"  required  >
+    </div> -->
+
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"
+        value="{{detail.description }}" disabled></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Skills</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Skills" required
+        value="{{detail.primarySkills}}" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">No of Employees Required</label>
+      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="No Of Employee Needed"
+        required value="{{detail.numberOfEmployees}}" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Experience Needed</label>
+      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Experience - Years" required
+        value="{{detail.experienceNeeded}}" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label"></label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Add Comments"
+        disabled></textarea>
+    </div>
+
+    <button type="button" (click)="onAccept(1003)" class="btn btn-outline-dark mx-4">Accept</button>
+    <!-- <a routerLink="/budget"><button type="submit" class="btn btn-outline-dark mx-4">Accept</button></a> -->
+    <button type="button" (click)="onClearify()" class="btn btn-dark mx-4">Clearify</button>
+    <!-- <a routerLink="/requistionform"><button type="submit" class="btn btn-dark mx-4">Clearify</button></a> -->
+    <button type="button" (click)="onReject()"class="btn btn-outline-dark mx-4">Reject</button>
+    <!-- <a href="#"><button type="submit" class="btn btn-outline-dark mx-4">Reject</button></a> -->
+  </form>
+
+
+
+
+
+
+
+</div>
+<router-outlet></router-outlet>

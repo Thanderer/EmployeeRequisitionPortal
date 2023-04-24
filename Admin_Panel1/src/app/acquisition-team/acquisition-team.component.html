@@ -1,0 +1,39 @@
+<h1 class="text-center mt-5">Talent Acquistion Team</h1>
+<div class="container mt-5" style="border: 1px solid; padding: 34px; border-radius: 25px; ">
+
+  <table class="table text-center" style="font-size: 20px; width: 100% ;"  >
+    <thead>
+      <tr>
+        <th scope="col">Form Id</th>
+        <th scope="col">Job Title</th>
+        <th scope="col">Department</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Budget Range</th>
+        <th scope="col">Acquisition-Status</th>
+        <!-- <td>Status</td> -->
+        <th scope="col text-center" style="width: 10%;">Details</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let acquisitions of acquisition">
+        <th scope="row">{{acquisitions.requisitionFormId}}</th>
+        <td>{{acquisitions.jobTitle}}</td>
+        <td>{{acquisitions.department}}</td>
+        <td>{{acquisitions.createdDate | date :  "dd  MMM, yy"}}</td>
+        <td>{{acquisitions.budgetLowerRange}} - {{acquisitions.budgetUpperRange}}</td>
+        <!-- <td>Status</td> -->
+       <!-- <td><button type="button" class="btn btn-success">Proceed</button></td> -->
+       <td><button type="button" class="btn btn-primary" disabled>Pending</button></td>
+
+        <td><button type="button" class="btn btn-outline-primary" style="font-size: medium;" (click)="navigate(acquisitions.requisitionFormId)">View</button></td>
+
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+

@@ -1,0 +1,100 @@
+<div class="container justify-content-center d-flex mt-5 mb-5">
+
+  <form [formGroup]="requisitionForm" class="col-4.5" style="border: 1px solid; border-radius: 15px ; padding: 40px;font-size: 20px; " (ngSubmit)="onSubmit()">
+    <h1 class="text-center">REQUISTION FORM</h1>
+    <div class="input-field pt-3"
+      [class.error]="requisitionForm.controls['jobTitle'].dirty && requisitionForm.hasError('required','jobTitle')">
+      <input type="text" formControlName="jobTitle" class="form-control" id="exampleFormControlInput1"
+        placeholder="Job Title">
+    </div>
+      <small class="text-danger"
+        *ngIf="requisitionForm.controls['jobTitle'].dirty && requisitionForm.hasError('required','jobTitle')">*Job Title
+        is required</small>
+
+
+
+    <div class="input-field pt-3"
+      [class.error]="requisitionForm.controls['description'].dirty && requisitionForm.hasError('required','description')">
+      <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea1" rows="3"
+        placeholder="Description"></textarea>
+    </div>
+    <small class="text-danger"
+      *ngIf="requisitionForm.controls['description'].dirty && requisitionForm.hasError('required','description')">*Job
+      Description
+      is required</small>
+
+
+
+      <div class="pt-3 input-field"
+      [class.error]="requisitionForm.controls['department'].dirty && requisitionForm.hasError('required','department')">
+      <input type="text" formControlName="department" class="form-control" id="exampleFormControlInput1"
+        placeholder="Department">
+    </div>
+    <small class="text-danger"
+      *ngIf="requisitionForm.controls['department'].dirty && requisitionForm.hasError('required','department')">*Department
+      is required</small>
+
+
+
+    <div class="pt-3 input-field"
+      [class.error]="requisitionForm.controls['primarySkills'].dirty && requisitionForm.hasError('required','primarySkills')">
+      <input type="text" formControlName="primarySkills" class="form-control" id="exampleFormControlInput1"
+        placeholder="Primary Skills">
+    </div>
+    <small class="text-danger"
+      *ngIf="requisitionForm.controls['primarySkills'].dirty && requisitionForm.hasError('required','primarySkills')">*Primary
+      Skills
+      is required</small>
+
+
+
+    <div class="pt-3 input-field"
+      [class.error]="requisitionForm.controls['secondarySkills'].dirty && requisitionForm.hasError('required','secondarySkills')">
+      <input type="text" formControlName="secondarySkills" class="form-control" id="exampleFormControlInput1"
+        placeholder="Secondary Skills">
+    </div>
+    <small class="text-danger"
+      *ngIf="requisitionForm.controls['secondarySkills'].dirty && requisitionForm.hasError('required','secondarySkills')">*Secondary
+      Skills
+      is required</small>
+
+
+
+    <div class="pt-3 input-field"
+      [class.error]="requisitionForm.controls['numberOfEmployees'].dirty && requisitionForm.hasError('required','numberOfEmployees')">
+      <input type="number" formControlName="numberOfEmployees" class="form-control" id="exampleFormControlInput1"
+        placeholder="No Of Employee Needed">
+    </div>
+    <small class="text-danger"
+      *ngIf="requisitionForm.controls['numberOfEmployees'].dirty && requisitionForm.hasError('required','numberOfEmployees')">*No
+      Of Employee
+      is required</small>
+
+
+
+    <div class="pt-3 input-field"
+      [class.error]="requisitionForm.controls['experienceNeeded'].dirty && requisitionForm.hasError('required','experienceNeeded')">
+      <input type="number" class="form-control" formControlName="experienceNeeded" id="exampleFormControlInput1"
+        placeholder="Experience - Years">
+    </div>
+    <small class="text-danger"
+      *ngIf="requisitionForm.controls['experienceNeeded'].dirty && requisitionForm.hasError('required','experienceNeeded')">*Experience
+      is required</small>
+
+
+
+    <!-- <div class="pt-3 input-field">
+      <textarea class="form-control" formControlName="comment" id="disabledTextInput" rows="3" style="display: none;"
+        placeholder="Add Comments"></textarea>
+    </div> -->
+
+<!-- routerLink="/details" -->
+      <a> <button class="pt-3 btn btn-block" type="submit"
+        class="btn btn-outline-dark  ">Submit</button></a>
+    <button class="pt-3 btn btn-block" type="reset" class="btn btn-dark mx-4">Reset</button>
+
+  </form>
+
+
+</div>
+

@@ -1,0 +1,70 @@
+<h1 class="text-center mt-5 ">Requisition Requests</h1>
+<div class="container mt-5 mb-5" style="border: 1px solid; padding: 35px; border-radius: 25px;">
+
+  <table class="table text-center" style="font-size: 20px; width: 100% ;">
+    <thead>
+      <tr>
+        <th scope="col">Form Id</th>
+        <!-- <th scope="col">Requester Name</th> -->
+        <th scope="col">Job Title</th>
+        <th scope="col">Department</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Status</th>
+        <th scope="col text-center" style="width: 10%;">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forms of newdata">
+        <th scope="row">{{forms.requisitionFormId}}</th>
+        <td>{{forms.jobTitle}}</td>
+        <td>{{forms.department}}</td>
+
+        <!-- <td>Nidhin Nambiar</td> -->
+        <td>{{forms.createdDate | date :  "dd  MMM, yy" }}</td>
+        <td>{{forms.statusId}}</td>
+        <!-- <td><button type="button" class="btn btn-primary" disabled>Pending</button></td> -->
+        <!-- <td><a routerLink="/details" ><button type="button" class="btn btn-outline-primary" style="font-size: medium;">View</button></a></td> -->
+        <td><button type="button" class="btn btn-outline-primary" style="font-size: medium;" (click)="navigate(forms.requisitionFormId)">View</button></td>
+
+      </tr>
+
+      <!-- <tr>
+        <th scope="row">2</th>
+        <td>002</td>
+        <td>Suketu Naik</td>
+        <td>Job Title</td>
+        <td>1 April 2023</td>
+        <td><button type="button" class="btn btn-success" >Hired</button></td>
+        <td><a routerLink="/details"><button type="button" class="btn btn-outline-primary" style="font-size: medium;">View</button></a></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>003</td>
+        <td>Jay Pandya</td>
+        <td>Job Title</td>
+        <td>2 April 2023</td>
+        <td><button type="button" class="btn btn-primary" disabled>Pending</button></td>
+        <td><a routerLink="/details"><button type="button" class="btn btn-outline-primary" style="font-size: medium;">View</button></a></td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>004</td>
+        <td>Shyam Bhadeshiya</td>
+        <td>Job Title</td>
+        <td>3 April 2023</td>
+        <td><button type="button" class="btn btn-success" >Hired</button></td>
+        <td><a routerLink="/details"><button type="button" class="btn btn-outline-primary" style="font-size: medium;">View</button></a></td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>005</td>
+        <td>Ajay Ajit Varu</td>
+        <td>Job Title</td>
+        <td>4 April 2023</td>
+        <td><button type="button" class="btn btn-primary" disabled>Pending</button></td>
+        <td><a routerLink="/details"><button type="button" class="btn btn-outline-primary" style="font-size: medium;">View</button></a></td>
+      </tr> -->
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>

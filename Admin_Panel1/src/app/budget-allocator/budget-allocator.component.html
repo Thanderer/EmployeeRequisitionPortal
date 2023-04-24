@@ -1,0 +1,38 @@
+<h1 class="text-center mt-5">Allocate Budget</h1>
+<div class="container mt-5" style="border: 1px solid; padding: 35px; border-radius: 25px; ">
+
+  <table class="table text-center" style="font-size: 20px; width: 100% ;"  >
+    <thead>
+      <tr>
+        <th scope="col">Form Id</th>
+        <th scope="col">Job Title</th>
+        <th scope="col">Department</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Employees Req</th>
+        <th scope="col">Details</th>
+
+
+
+        <!-- <td>Status</td> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let budget of budgets">
+
+        <th scope="row">{{budget.requisitionFormId}}</th>
+        <td>{{budget.jobTitle}}</td>
+        <td>{{budget.department}}</td>
+        <td>{{budget.createdOn | date :  "dd  MMM, yy"}}</td>
+        <td>{{budget.status}}</td>
+        <td>{{budget.numberOfEmployees}}</td>
+        <!-- <td><input type="text" id="minimun" width="20%" size="3" style="border-radius: 10px; text-align: center;" value="{{budgets.budgetLowerRange}}" disabled>-<input type="text" id="maximum" size="3" style="border-radius: 10px; text-align: center;"  value="{{budgets.budgetUpperRange}}" disabled></td> -->
+        <!-- <td>Status</td> -->
+        <td><button type="button" class="btn btn-outline-primary" style="font-size: medium;" (click)="navigate(budget.requisitionFormId)">View</button></td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+

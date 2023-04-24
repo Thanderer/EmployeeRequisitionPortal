@@ -1,0 +1,70 @@
+<div class="container justify-content-center d-flex mt-5 mb-5">
+
+  <form [formGroup]="addBudget"  class="col-4" (ngSubmit)="onSubmit()"
+   style="border: 1px solid; border-radius: 15px ; padding: 30px;font-size: 20px;">
+    <h1 class="text-center">Form Id : {{detailview.requisitionFormId }}</h1>
+
+
+        <div class="mb-3 ">
+          <label for="exampleFormControlInput1" class="form-label">Job Title</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1"  required value="{{detailview.jobTitle }}" disabled >
+        </div>
+
+    <!-- <div class="mb-3 ">
+      <label for="exampleFormControlInput1" class="form-label"></label>
+      <input type="text" class="form-control" id="exampleFormControlInput1"  required  >
+    </div> -->
+
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" value="{{detailview.description}}" disabled></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Skills</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Skills" required value="{{detailview.primarySkills}}" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">No of Employees Required</label>
+      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="No Of Employee Needed" required value="{{detailview.numberOfEmployees}}" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Experience Needed</label>
+      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Experience - Years" required value="{{detailview.experienceNeeded}}" disabled>
+    </div>
+
+    <div class="mb-3"
+     [class.error]="addBudget.controls['budgetLowerRange'].dirty && addBudget.hasError('required','budgetLowerRange')">
+      <label for="exampleFormControlInput1" class="form-label">Budget Lower Range</label>
+      <input type="number" formControlName="budgetLowerRange" class="form-control" id="exampleFormControlInput1" placeholder="Experience - Years" required  >
+    </div>
+    <small class="text-danger"
+      *ngIf="addBudget.controls['budgetLowerRange'].dirty && addBudget.hasError('required','budgetLowerRange')">*Budget
+      is required</small>
+
+    <div class="mb-3"
+    [class.error]="addBudget.controls['budgetUpperRange'].dirty && addBudget.hasError('required','budgetUpperRange')">
+      <label for="exampleFormControlInput1" class="form-label">Budget Higher Range</label>
+      <input type="number" formControlName="budgetUpperRange" class="form-control" id="exampleFormControlInput1" placeholder="Experience - Years" required >
+    </div>
+    <small class="text-danger"
+      *ngIf="addBudget.controls['budgetUpperRange'].dirty && addBudget.hasError('required','budgetUpperRange')">*Budget
+      is required</small>
+
+
+    <button type="submit" class="btn btn-success">Proceed</button>
+
+
+    <!-- <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label"></label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Add Comments" disabled></textarea>
+    </div> -->
+<!--
+    <a routerLink="/budget"><button type="submit" class="btn btn-outline-dark mx-4">Accept</button></a>
+    <a routerLink="/requistionform"><button type="submit" class="btn btn-dark mx-4" >Clearify</button></a>
+    <a href="#"><button type="submit" class="btn btn-outline-dark mx-4">Reject</button></a> -->
+  </form>
+</div>
+<router-outlet></router-outlet>
